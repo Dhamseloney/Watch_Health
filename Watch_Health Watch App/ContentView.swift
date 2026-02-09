@@ -1,0 +1,24 @@
+//
+//  ContentView.swift
+//  Watch_Health Watch App
+//
+//  Created by Raphael Awala on 09/02/2026.
+//
+
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            Text("Hello, world!")
+        }
+        .padding()
+    }
+}
+
+#Preview {
+    ContentView()
+}
