@@ -6,14 +6,31 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
+
+    @StateObject private var tracker = HealthTrackerModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 10) {
+            Text("Today's Health")
+                .font(.headline)
+
+            Text("Calories: \(tracker.calories)")
+                .foregroundColor(.orange)
+                .fontWeight(.semibold)
+
+            Text(String(format: "Water: %.2f L", tracker.waterLitres))
+                .foregroundColor(.blue)
+                .fontWeight(.semibold)
+            Button("Add 100 Calories") {
+                tracker.addCalories(100)
+            }
+
+            Button("Add 250ml Water") {
+                tracker.addWater(ml: 250)
+            }
         }
         .padding()
     }
@@ -22,3 +39,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
