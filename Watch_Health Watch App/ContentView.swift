@@ -14,7 +14,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            Text("Today's Health")
+            Text("Today's Health Overview")
                 .font(.headline)
 
             Text("Calories: \(tracker.calories)")
