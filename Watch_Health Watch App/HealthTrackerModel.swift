@@ -1,62 +1,24 @@
 import Foundation
-import SwiftUI
-import Combine
 
+struct HealthTrackerModel {
 
-class HealthTrackerModel: ObservableObject {
+    var calories: Int = 0
+    var waterMl: Double = 0
 
-    // Justin Fletcher
-
-    @Published var calories: Int = 0
-    @Published var waterLitres: Double = 0.0
-
-    private let saveKey = "DayData"
-
-    init() {
-        loadData()
-        resetIfNewDay()
-    }
-
-    func addCalories(_ amount: Int) {
+    mutating func addCalories(_ amount: Int) {
         calories += amount
-        saveData()
     }
 
-    func addWater(ml: Double) {
-        waterLitres += ml / 1000
-        saveData()
+    mutating func addWater(ml: Double) {
+        waterMl += ml
     }
 
-    private func saveData() {
-        let data: [String: Any] = [
-            "calories": calories,
-            "water": waterLitres,
-            "date": Date()
-        ]
-        UserDefaults.standard.set(data, forKey: saveKey)
+    mutating func resetDay() {
+        calories = 0
+        waterMl = 0
     }
 
-    private func loadData() {
-        guard let data = UserDefaults.standard.dictionary(forKey: saveKey) else { return }
-        calories = data["calories"] as? Int ?? 0
-        waterLitres = data["water"] as? Double ?? 0
-    }
-
-    private func resetIfNewDay() {
-        guard let data = UserDefaults.standard.dictionary(forKey: saveKey),
-              let savedDate = data["date"] as? Date else { return }
-
-        if !Calendar.current.isDateInToday(savedDate) {
-            calories = 0
-            waterLitres = 0
-            saveData()
-        }
+    var waterLitres: Double {
+        waterMl / 1000
     }
 }
-//
-//  HealthTrackerModel.swift
-//  Watch_Health
-//
-//  Created by Raphael Awala on 18/02/2026.
-//
-

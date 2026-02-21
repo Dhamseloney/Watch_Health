@@ -39,9 +39,33 @@
 		5E86F29F2F39F3CA003CA02A /* Watch_Health Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch_Health Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5EB0CB0C2F489283007F2920 /* Exceptions for "Watch_Health Watch App" folder in "Watch_Health Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MealType.swift,
+			);
+			target = 5E86F29E2F39F3CA003CA02A /* Watch_Health Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		5EB0CB0D2F489283007F2920 /* Exceptions for "Watch_Health Watch App" folder in "Copy Bundle Resources" phase from "Watch_Health Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 5E86F29D2F39F3CA003CA02A /* Resources */;
+			membershipExceptions = (
+				MealType.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5E86F2A32F39F3CA003CA02A /* Watch_Health Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5EB0CB0C2F489283007F2920 /* Exceptions for "Watch_Health Watch App" folder in "Watch_Health Watch App" target */,
+				5EB0CB0D2F489283007F2920 /* Exceptions for "Watch_Health Watch App" folder in "Copy Bundle Resources" phase from "Watch_Health Watch App" target */,
+			);
 			path = "Watch_Health Watch App";
 			sourceTree = "<group>";
 		};

@@ -4,39 +4,75 @@
 //
 //  Created by Raphael Awala on 09/02/2026.
 //
-
 import SwiftUI
-import Combine
 
 struct ContentView: View {
 
-    @StateObject private var tracker = HealthTrackerModel()
+    @State private var tracker = HealthTrackerModel()
 
     var body: some View {
-        VStack(spacing: 10) {
-            Text("Today's Health Overview")
-                .font(.headline)
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 12) {
 
-            Text("Calories: \(tracker.calories)")
-                .foregroundColor(.orange)
+                    statCard(
+                        title: "Calories",
+                        value: "\(tracker.calories)",
+                        unit: "kcal"
+                    )
+
+                    statCard(
+                        title: "Water",
+                        value: String(format: "%.2f", tracker.waterLitres),
+                        unit: "litres"
+                    )
+
+                    NavigationLink {
+                        EntryView(tracker: $tracker)
+                    } label: {
+                        Text("Log Meal / Drink")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+
+                    Button(role: .destructive) {
+                        tracker.resetDay()
+                    } label: {
+                        Text("Reset Day")
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                .padding(.horizontal)
+            }
+            .navigationTitle("Today")
+        }
+    }
+
+    
+    @ViewBuilder
+    private func statCard(title: String, value: String, unit: String) -> some View {
+        VStack(spacing: 4) {
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            Text(value)
+                .font(.title2)
                 .fontWeight(.semibold)
 
-            Text(String(format: "Water: %.2f L", tracker.waterLitres))
-                .foregroundColor(.blue)
-                .fontWeight(.semibold)
-            Button("Add 100 Calories") {
-                tracker.addCalories(100)
-            }
-
-            Button("Add 250ml Water") {
-                tracker.addWater(ml: 250)
-            }
+            Text(unit)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
         }
         .padding()
+        .frame(maxWidth: .infinity)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.gray.opacity(0.15))
+        )
     }
 }
 
 #Preview {
     ContentView()
 }
-
